@@ -1,0 +1,39 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+features:
+  - ipfsOnEthereumContracts
+dataSources:
+  - kind: near
+    name: owling-backend
+    network: near-mainnet
+    source:
+      account: "backend.owlling.near"
+      startBlock: 78665281
+    mapping:
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Form
+        - Submit_form
+        - Nft
+      receiptHandlers:
+        - handler: handleReceipt
+      file: ./src/backend.ts
+  - kind: near
+    name: owling-nft
+    network: near-mainnet
+    source:
+      account: "nft.owlling.near"
+      startBlock: 78665446
+    mapping:
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Form
+        - Submit_form
+        - Nft
+      receiptHandlers:
+        - handler: handleReceipt
+      file: ./src/nft.ts
+ 
